@@ -121,6 +121,27 @@ public:
 		}
 		return -1;
 	}
+	void reverse()
+	{
+		if (getCount() > 1)
+		{
+			Node* tPtr = first->next;
+			Node* aPtr = tPtr->next;
+			first->next = nullptr;
+			newNode = first;
+			do
+			{
+				tPtr->next = newNode;
+				newNode = tPtr;
+				if (aPtr == nullptr) break;
+				tPtr = aPtr;
+				aPtr = aPtr->next;
+			} while (true);
+			tPtr = first;
+			first = last;
+			last = tPtr;
+		}
+	}
 	size_t getCount() const
 	{
 		return count;
@@ -143,8 +164,7 @@ public:
 	~LinkedList()
 	{
 		for (size_t i = 0; i < getCount(); ++i)
-		{
-			newNode = first;
+		{			newNode = first;
 			first = first->next;
 			delete newNode;
 			newNode = nullptr;

@@ -1,27 +1,5 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (CPP Data Structures.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   CPP Data Structures Implementation.cpp
-D:\Mohamed\Projects\C++\CPP Data Structures Implementation\CPP Data Structures Implementation\CPP Data Structures Implementation.cpp(23,23): warning C4018: '<': signed/unsigned mismatch
-D:\Mohamed\Projects\C++\CPP Data Structures Implementation\CPP Data Structures Implementation\Array.h(51,21): warning C4018: '<': signed/unsigned mismatch
-  (compiling source file 'CPP%20Data%20Structures%20Implementation.cpp')
-      D:\Mohamed\Projects\C++\CPP Data Structures Implementation\CPP Data Structures Implementation\Array.h(51,21):
-      the template instantiation context (the oldest one first) is
-          D:\Mohamed\Projects\C++\CPP Data Structures Implementation\CPP Data Structures Implementation\CPP Data Structures Implementation.cpp(11,16):
-          see reference to class template instantiation 'Array<int>' being compiled
-          D:\Mohamed\Projects\C++\CPP Data Structures Implementation\CPP Data Structures Implementation\Array.h(47,7):
-          while compiling class template member function 'void Array<int>::operator +=(Array<int> &)'
-              D:\Mohamed\Projects\C++\CPP Data Structures Implementation\CPP Data Structures Implementation\CPP Data Structures Implementation.cpp(22,7):
-              see the first reference to 'Array<int>::operator +=' in 'main'
-  
-D:\Mohamed\Projects\C++\CPP Data Structures Implementation\CPP Data Structures Implementation\Array.h(54,21): warning C4018: '<': signed/unsigned mismatch
-  (compiling source file 'CPP%20Data%20Structures%20Implementation.cpp')
-  
-D:\Mohamed\Projects\C++\CPP Data Structures Implementation\CPP Data Structures Implementation\Array.h(40,22): warning C4018: '<': signed/unsigned mismatch
-  (compiling source file 'CPP%20Data%20Structures%20Implementation.cpp')
-      D:\Mohamed\Projects\C++\CPP Data Structures Implementation\CPP Data Structures Implementation\Array.h(40,22):
-      the template instantiation context (the oldest one first) is
-          D:\Mohamed\Projects\C++\CPP Data Structures Implementation\CPP Data Structures Implementation\Array.h(34,7):
-          while compiling class template member function 'void Array<int>::operator =(Array<int> &)'
-              D:\Mohamed\Projects\C++\CPP Data Structures Implementation\CPP Data Structures Implementation\CPP Data Structures Implementation.cpp(27,7):
-              see the first reference to 'Array<int>::operator =' in 'main'
-  
+D:\Mohamed\Projects\C++\CPP Data Structures Implementation\CPP Data Structures Implementation\CPP Data Structures Implementation.cpp(18,20): warning C4018: '<': signed/unsigned mismatch
+D:\Mohamed\Projects\C++\CPP Data Structures Implementation\CPP Data Structures Implementation\CPP Data Structures Implementation.cpp(24,20): warning C4018: '<': signed/unsigned mismatch
   CPP Data Structures Implementation.vcxproj -> D:\Mohamed\Projects\C++\CPP Data Structures Implementation\Debug\CPP Data Structures Implementation.exe
