@@ -1,12 +1,13 @@
 #pragma once
 #include <iostream>
 template <class T>
-class LinkedList
+class DoublyLinkedList
 {
 	struct Node
 	{
 		T value;
 		Node* next = nullptr;
+		Node* back = nullptr;
 		Node(T& v)
 		{
 			value = v;
@@ -27,6 +28,7 @@ public:
 		else
 		{
 			last->next = newNode;
+			newNode->back = last;
 			last = newNode;
 		}
 		++count;
@@ -35,10 +37,11 @@ public:
 	{
 		if (index > getCount()) throw std::out_of_range("index out of range");
 		else if (index == getCount()) add(value);
-		else if(index == 0)
+		else if (index == 0)
 		{
 			newNode = new Node(value);
 			newNode->next = first;
+			first->back = newNode;
 			first = newNode;
 			++count;
 		}
@@ -52,8 +55,10 @@ public:
 				if (c == index)
 				{
 					Node* nNode = new Node(value);
+					newNode->next->back = nNode;
 					nNode->next = newNode->next;
 					newNode->next = nNode;
+					nNode->back = newNode;
 					++count;
 					break;
 				}
@@ -67,20 +72,21 @@ public:
 	}
 	void remove(size_t index)
 	{
-		if (getCount() == 0 || index > getCount()-1)
+		if (getCount() == 0 || index > getCount() - 1)
 			throw std::out_of_range("index out of range");
-		else if (index == getCount()-1)
+		else if (index == getCount() - 1)
 		{
-			delete last;
-			last = first;
-			for (size_t i = 0; i < getCount()-1; ++i)	last = last->next;
+			newNode = last;
+			last = last->back;
+			delete newNode;
+			last->next = nullptr;
 		}
 		else if (index == 0)
 		{
 			newNode = first;
 			first = first->next;
 			delete newNode;
-			newNode = nullptr;
+			first->back = nullptr;
 		}
 		else
 		{
@@ -93,6 +99,7 @@ public:
 				{
 					Node* nNode = newNode->next;
 					newNode->next = newNode->next->next;
+					newNode->next->back = newNode;
 					delete nNode;
 					nNode = nullptr;
 					break;
@@ -125,18 +132,15 @@ public:
 	{
 		if (getCount() > 1)
 		{
-			Node* tPtr = first->next;
-			Node* aPtr = tPtr->next;
-			first->next = nullptr;
+			Node* tPtr;
 			newNode = first;
 			do
 			{
-				tPtr->next = newNode;
-				newNode = tPtr;
-				if (aPtr == nullptr) break;
-				tPtr = aPtr;
-				aPtr = aPtr->next;
-			} while (true);
+				tPtr = newNode->next;
+				newNode->next = newNode->back;
+				newNode->back = tPtr;
+				newNode = newNode->back;
+			} while (newNode != nullptr);
 			tPtr = first;
 			first = last;
 			last = tPtr;
@@ -161,7 +165,7 @@ public:
 		}
 		throw std::out_of_range("index out of range");
 	}
-	~LinkedList()
+	~DoublyLinkedList()
 	{
 		for (size_t i = 0; i < getCount(); ++i)
 		{
