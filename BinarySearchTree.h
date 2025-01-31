@@ -16,13 +16,13 @@ class BinarySearchTree
 	BSTNode* root = nullptr;
 	BSTNode* newNode = nullptr;
 	int* allValues = nullptr;
-	size_t count = 0;
-	void readValues(BSTNode* r, size_t& i)
+	size_t count = 0, indexOfValues;
+	void readValues(BSTNode*& r)
 	{
 		if (r == nullptr) return;
-		allValues[i++] = r->value;
-		readValues(r->left, i);
-		readValues(r->right, i);
+		readValues(r->left);
+		allValues[indexOfValues++] = r->value;
+		readValues(r->right);
 	}
 public:
 	void add(int value)
@@ -55,23 +55,23 @@ public:
 		else root = new BSTNode(value);
 		++count;
 	}
-	BSTNode* getMin()
+	BSTNode* getMinValue()
 	{
-		return getMin(root);
+		return getMinValue(root);
 	}
-	BSTNode*& getMin(BSTNode*& r)
+	BSTNode*& getMinValue(BSTNode*& r)
 	{
 		if (r == nullptr || r->left == nullptr) return r;
-		else return getMin(r->left);
+		else return getMinValue(r->left);
 	}
-	BSTNode* getMax()
+	BSTNode* getMaxValue()
 	{
-		return getMax(root);
+		return getMaxValue(root);
 	}
-	BSTNode*& getMax(BSTNode*& r)
+	BSTNode*& getMaxValue(BSTNode*& r)
 	{
 		if (r == nullptr || r->right == nullptr) return r;
-		else return getMax(r->right);
+		else return getMaxValue(r->right);
 	}
 	BSTNode* search(int value)
 	{
@@ -110,7 +110,7 @@ public:
 			}
 			else
 			{
-				BSTNode*& n2 = getMin(n->right);
+				BSTNode*& n2 = getMinValue(n->right);
 				n->value = n2->value;
 				delete n2;
 				n2 = nullptr;
@@ -123,8 +123,8 @@ public:
 		if (getCount() == 0) throw std::out_of_range("tree is empty");
 		delete[] allValues;
 		allValues = new int[getCount()];
-		size_t index = 0;
-		readValues(root, index);
+		indexOfValues = 0;
+		readValues(root);
 		return allValues;
 	}
 	size_t getCount() const
