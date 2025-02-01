@@ -1,4 +1,4 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (CPP Data Structures.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   CPP Data Structures Implementation.cpp
-D:\Mohamed\Projects\C++\CPP Data Structures Implementation\CPP Data Structures Implementation\CPP Data Structures Implementation.cpp(23,20): warning C4018: '<': signed/unsigned mismatch
+D:\Mohamed\Projects\C++\CPP Data Structures Implementation\CPP Data Structures Implementation\BinarySearchTree.h(85,1): warning C4715: 'BinarySearchTree::search': not all control paths return a value
   CPP Data Structures Implementation.vcxproj -> D:\Mohamed\Projects\C++\CPP Data Structures Implementation\Debug\CPP Data Structures Implementation.exe

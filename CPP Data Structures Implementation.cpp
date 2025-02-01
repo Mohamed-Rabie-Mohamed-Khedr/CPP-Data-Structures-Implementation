@@ -15,12 +15,11 @@ int main()
 	bst.add(33);
 	bst.add(74);
 	bst.add(68);
+	bst.add(25);
 	bst.add(45);
 	bst.add(82);
 	bst.add(23);
 
-	int* arr = bst.getValues();
-	for (int i = 0; i < bst.getCount(); ++i)
-		std::cout << arr[i] << std::endl;
+	std::cout << bst.getSubstitute(25) << std::endl;
 	return 0;
 }

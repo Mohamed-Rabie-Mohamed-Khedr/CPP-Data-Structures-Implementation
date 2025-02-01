@@ -83,6 +83,17 @@ public:
 		else if (value < r->value) search(r->left, value);
 		else search(r->right, value);
 	}
+	int getSubstitute(int value)
+	{
+		BSTNode*& n = search(root, value);
+		if (n == nullptr || n->left == nullptr && n->right == nullptr)
+			return NULL;
+		else if (n->left != nullptr && n->right == nullptr)
+			return n->left->value;
+		else if (n->left == nullptr && n->right != nullptr)
+			return n->right->value;
+		else return getMinValue(n->right)->value;
+	}
 	void remove(int value)
 	{
 		BSTNode*& n = search(root, value);
