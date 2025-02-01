@@ -10,16 +10,14 @@
 int main()
 {
 	BinarySearchTree bst;
-	bst.add(63);
-	bst.add(54);
-	bst.add(33);
-	bst.add(74);
-	bst.add(68);
+	bst.add(15);
+	bst.add(6);
+	bst.add(3);
+	bst.add(9);
+	bst.add(8);
+	bst.add(20);
 	bst.add(25);
-	bst.add(45);
-	bst.add(82);
-	bst.add(23);
 
-	std::cout << bst.getSubstitute(25) << std::endl;
+	std::cout << bst.getDepth(8) << std::endl;
 	return 0;
 }

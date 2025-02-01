@@ -87,12 +87,28 @@ public:
 	{
 		BSTNode*& n = search(root, value);
 		if (n == nullptr || n->left == nullptr && n->right == nullptr)
-			return NULL;
+			return -1;
 		else if (n->left != nullptr && n->right == nullptr)
 			return n->left->value;
 		else if (n->left == nullptr && n->right != nullptr)
 			return n->right->value;
 		else return getMinValue(n->right)->value;
+	}
+	int getDepth(int value)
+	{
+		int d = 0;
+		newNode = root;
+		while (newNode != nullptr)
+		{
+			if (value == newNode->value) return d;
+			else
+			{
+				if (value < newNode->value) newNode = newNode->left;
+				else newNode = newNode->right;
+				++d;
+			}
+		}
+		return -1;
 	}
 	void remove(int value)
 	{
