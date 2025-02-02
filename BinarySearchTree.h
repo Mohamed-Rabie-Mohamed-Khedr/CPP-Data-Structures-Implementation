@@ -110,6 +110,23 @@ public:
 		}
 		return -1;
 	}
+	int getDepth(int value, int*& path)
+	{
+		int size = getDepth(value);
+		if (size < 0) return NULL;
+		else
+		{
+			path = new int[size];
+			newNode = root;
+			for (size_t i = 0; i < size; ++i)
+			{
+				path[i] = newNode->value;
+				if (value < newNode->value) newNode = newNode->left;
+				else newNode = newNode->right;
+			}
+		}
+		return size;
+	}
 	void remove(int value)
 	{
 		BSTNode*& n = search(root, value);
