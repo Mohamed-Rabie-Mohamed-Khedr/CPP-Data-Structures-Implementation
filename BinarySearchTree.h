@@ -13,7 +13,6 @@ struct BSTNode
 };
 class BinarySearchTree
 {
-	BSTNode* root = nullptr;
 	BSTNode* newNode = nullptr;
 	int* allValues = nullptr;
 	size_t count = 0, indexOfValues;
@@ -25,6 +24,7 @@ class BinarySearchTree
 		readValues(r->right);
 	}
 public:
+	BSTNode* root = nullptr;
 	void add(int value)
 	{
 		if (getCount() > 0)
@@ -127,6 +127,18 @@ public:
 		}
 		return size;
 	}
+	int getHeight()
+	{
+		return getHeight(root);
+	}
+	int getHeight(BSTNode*& r)
+	{
+		if (r == nullptr) return -1;
+
+		int le = 1 + getHeight(r->left);
+		int ri = 1 + getHeight(r->right);
+		return le > ri ? le : ri;
+	}
 	void remove(int value)
 	{
 		BSTNode*& n = search(root, value);
@@ -171,16 +183,16 @@ public:
 		readValues(root);
 		return allValues;
 	}
-	size_t getCount() const
-	{
-		return count;
-	}
 	void cleaning(BSTNode*& r)
 	{
 		if (r->left != nullptr) cleaning(r->left);
 		if (r->right != nullptr) cleaning(r->right);
 		delete r;
 		r = nullptr;
+	}
+	size_t getCount() const
+	{
+		return count;
 	}
 	~BinarySearchTree()
 	{
