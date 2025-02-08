@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include "BSNode.h"
-class BinarySearchTree
+class AVLTree
 {
 	BSNode* newNode = nullptr;
 	int* allValues = nullptr;
@@ -12,6 +12,62 @@ class BinarySearchTree
 		readValues(r->left);
 		allValues[indexOfValues++] = r->value;
 		readValues(r->right);
+	}
+	void balanced(BSNode*& r)
+	{
+		if (r == nullptr) return;
+
+		int balancedFactor = getHeight(r->left) - getHeight(r->right);
+		if (balancedFactor > -2 && balancedFactor < 2)
+		{
+			balanced(r->left);
+			balanced(r->right);
+		}
+		else
+		{
+			BSNode* cLeft = nullptr, * cRight = nullptr;
+			if (balancedFactor > 1)
+			{
+				if (r->left->left == nullptr)
+				{
+					cLeft = r->left->right->left;
+					cRight = r->left->right->right;
+					newNode = r->left;
+					r->left = r->left->right;
+					r->left->left = newNode;
+					r->left->left->right = nullptr;
+				}
+				newNode = r;
+				r = r->left;
+				r->right = newNode;
+				r->right->left = cRight;
+				r->left->right = cLeft;
+			}
+			else
+			{
+				if (r->right->right == nullptr)
+				{
+					cLeft = r->right->left->right;
+					cRight = r->right->left->left;
+					newNode = r->right;
+					r->right = r->right->left;
+					r->right->right = newNode;
+					r->right->right->left = nullptr;
+				}
+				newNode = r;
+				r = r->right;
+				r->left = newNode;
+				r->left->right = cRight;
+				r->right->left = cLeft;
+			}
+		}
+	}
+	void cleaning(BSNode*& r)
+	{
+		if (r->left != nullptr) cleaning(r->left);
+		if (r->right != nullptr) cleaning(r->right);
+		delete r;
+		r = nullptr;
 	}
 public:
 	BSNode* root = nullptr;
@@ -44,6 +100,7 @@ public:
 		}
 		else root = new BSNode(value);
 		++count;
+		balanced(root);
 	}
 	BSNode* getMinValue()
 	{
@@ -127,7 +184,6 @@ public:
 
 		int le = getHeight(r->left);
 		int ri = getHeight(r->right);
-	
 		return 1 + (le > ri ? le : ri);
 	}
 	void remove(int value)
@@ -163,6 +219,7 @@ public:
 				n2 = nullptr;
 			}
 			--count;
+			balanced(root);
 		}
 	}
 	int* getValues()
@@ -174,18 +231,16 @@ public:
 		readValues(root);
 		return allValues;
 	}
-	void cleaning(BSNode*& r)
+	void clean(BSNode*& r)
 	{
-		if (r->left != nullptr) cleaning(r->left);
-		if (r->right != nullptr) cleaning(r->right);
-		delete r;
-		r = nullptr;
+		cleaning(r);
+		balanced(root);
 	}
 	size_t getCount() const
 	{
 		return count;
 	}
-	~BinarySearchTree()
+	~AVLTree()
 	{
 		delete[] allValues;
 		allValues = nullptr;

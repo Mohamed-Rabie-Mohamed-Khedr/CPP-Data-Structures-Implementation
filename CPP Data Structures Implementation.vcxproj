@@ -132,7 +132,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h" />
+    <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BinarySearchTree.h" />
+    <ClInclude Include="BSNode.h" />
     <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="QueueLinkedList.h" />
